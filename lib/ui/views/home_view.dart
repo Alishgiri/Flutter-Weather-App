@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:weatherapp/ui/views/base_view.dart';
-import 'package:weatherapp/core/view_models/home_view_model.dart';
 import 'package:weatherapp/ui/views/help_view.dart';
-import 'package:weatherapp/ui/views/widgets/home/weather_info.dart';
+import 'package:weatherapp/ui/widgets/weather_info.dart';
+import 'package:weatherapp/core/view_models/home_view_model.dart';
 
 class HomeView extends StatelessWidget {
   void dismissKeyboard(BuildContext context) {
