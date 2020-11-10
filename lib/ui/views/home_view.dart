@@ -60,7 +60,7 @@ class HomeView extends StatelessWidget {
                   onChanged: model.onSearchChanged,
                   textCapitalization: TextCapitalization.words,
                   validator: (value) {
-                    if (value.isEmpty) return "Location is requried.";
+                    if (value.isEmpty) return "Please type in a city.";
                     return null;
                   },
                   decoration: InputDecoration(
