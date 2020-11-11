@@ -25,7 +25,7 @@ class HomeViewModel extends BaseModel {
     getCurrentLocation();
   }
 
-  void getCurrentLocation() async {
+  Future getCurrentLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.always ||
         permission == LocationPermission.whileInUse) {
