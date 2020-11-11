@@ -64,7 +64,7 @@ class HomeView extends StatelessWidget {
                     return null;
                   },
                   decoration: InputDecoration(
-                    hintText: "Search City…",
+                    hintText: "Enter Your City…",
                     contentPadding: const EdgeInsets.all(20),
                   ),
                 ),
