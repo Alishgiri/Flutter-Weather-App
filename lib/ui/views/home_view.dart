@@ -36,6 +36,7 @@ class HomeView extends StatelessWidget {
                 ),
           appBar: AppBar(
             elevation: 0,
+            key: Key('app-bar'),
             title: const Text('Weather App'),
             actions: [
               FlatButton(
@@ -56,6 +57,7 @@ class HomeView extends StatelessWidget {
                 child: TextFormField(
                   readOnly: isBusy,
                   initialValue: model.city,
+                  key: Key('text-form-field'),
                   style: theme.textTheme.headline4,
                   onChanged: model.onSearchChanged,
                   textCapitalization: TextCapitalization.words,
