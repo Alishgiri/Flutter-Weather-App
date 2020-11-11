@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 
 import 'package:weatherapp/locator.dart';
 import 'package:weatherapp/ui/views/help_view.dart';
-import 'package:weatherapp/core/services/hive_service.dart';
 
 void main() async {
   setupLocator();
-  await locator<HiveService>().initHive();
-  runApp(MyApp());
+  runApp(WeatherApp());
 }
 
-class MyApp extends StatelessWidget {
+class WeatherApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -15,7 +15,8 @@ class HomeViewModel extends BaseModel {
   final _hiveService = locator<HiveService>();
   final _weatherApiService = locator<WeatherApiService>();
 
-  void initState() {
+  Future<void> initState() async {
+    await _hiveService.initHive();
     city = _hiveService.getSavedCity();
     if (city != null) {
       _fetchWeatherData({"q": city});
