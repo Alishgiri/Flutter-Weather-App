@@ -21,62 +21,65 @@ class HomeView extends StatelessWidget {
       builder: (context, model, _) {
         final isBusy = model.isBusy;
         final data = model.weatherData;
-        return Scaffold(
-          key: model.scaffoldKey,
-          floatingActionButton: isBusy
-              ? null
-              : RaisedButton(
+        return GestureDetector(
+          onTap: () => dismissKeyboard(context),
+          child: Scaffold(
+            key: model.scaffoldKey,
+            floatingActionButton: isBusy
+                ? null
+                : RaisedButton(
+                    onPressed: () {
+                      dismissKeyboard(context);
+                      model.onSearch();
+                    },
+                    child: model.city == null
+                        ? const Text('Save')
+                        : const Text('Update'),
+                  ),
+            appBar: AppBar(
+              elevation: 0,
+              key: Key('app-bar'),
+              title: const Text('Weather App'),
+              actions: [
+                FlatButton(
                   onPressed: () {
-                    dismissKeyboard(context);
-                    model.onSearch();
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (_) => HelpView()),
+                    );
                   },
-                  child: model.city == null
-                      ? const Text('Save')
-                      : const Text('Update'),
-                ),
-          appBar: AppBar(
-            elevation: 0,
-            key: Key('app-bar'),
-            title: const Text('Weather App'),
-            actions: [
-              FlatButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(builder: (_) => HelpView()),
-                  );
-                },
-                child:
-                    const Text('Help', style: TextStyle(color: Colors.white)),
-              )
-            ],
-          ),
-          body: Column(
-            children: <Widget>[
-              Form(
-                key: model.formKey,
-                child: TextFormField(
-                  readOnly: isBusy,
-                  initialValue: model.city,
-                  key: Key('text-form-field'),
-                  style: theme.textTheme.headline4,
-                  onChanged: model.onSearchChanged,
-                  textCapitalization: TextCapitalization.words,
-                  validator: (value) {
-                    if (value.isEmpty) return "Please type in a city.";
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    hintText: "Enter Your City…",
-                    contentPadding: const EdgeInsets.all(20),
+                  child:
+                      const Text('Help', style: TextStyle(color: Colors.white)),
+                )
+              ],
+            ),
+            body: Column(
+              children: <Widget>[
+                Form(
+                  key: model.formKey,
+                  child: TextFormField(
+                    readOnly: isBusy,
+                    initialValue: model.city,
+                    key: Key('text-form-field'),
+                    style: theme.textTheme.headline4,
+                    onChanged: model.onSearchChanged,
+                    textCapitalization: TextCapitalization.words,
+                    validator: (value) {
+                      if (value.isEmpty) return "Please type in a city.";
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      hintText: "Enter Your City…",
+                      contentPadding: const EdgeInsets.all(20),
+                    ),
                   ),
                 ),
-              ),
-              Expanded(
-                child: isBusy
-                    ? const Center(child: const CircularProgressIndicator())
-                    : WeatherInfo(data: data),
-              )
-            ],
+                Expanded(
+                  child: isBusy
+                      ? const Center(child: const CircularProgressIndicator())
+                      : WeatherInfo(data: data),
+                )
+              ],
+            ),
           ),
         );
       },
