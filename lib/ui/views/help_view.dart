@@ -39,9 +39,9 @@ class _HelpViewState extends State<HelpView> {
           height: double.infinity,
           padding: const EdgeInsets.all(50.0),
           decoration: BoxDecoration(
-            image: DecorationImage(
+            image: const DecorationImage(
               fit: BoxFit.fill,
-              image: AssetImage('assets/frame.jpg'),
+              image: const AssetImage('assets/frame.jpg'),
             ),
           ),
           child: Column(
@@ -51,7 +51,10 @@ class _HelpViewState extends State<HelpView> {
               Text("We show weather for you", style: theme.textTheme.headline2),
               Align(
                 alignment: Alignment.centerRight,
-                child: FlatButton(onPressed: onSkip, child: Text('Skip…')),
+                child: FlatButton(
+                  onPressed: onSkip,
+                  child: const Text('Skip…'),
+                ),
               )
             ],
           ),
