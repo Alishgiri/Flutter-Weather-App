@@ -34,7 +34,7 @@ class HomeView extends StatelessWidget {
                       model.onSearch();
                     },
                     child: model.city == null
-                        ? const Text('Save')
+                        ? const Text('Save', key: const Key('save'))
                         : const Text('Update'),
                   ),
             appBar: AppBar(
