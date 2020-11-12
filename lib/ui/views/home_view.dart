@@ -28,6 +28,7 @@ class HomeView extends StatelessWidget {
             floatingActionButton: isBusy
                 ? null
                 : RaisedButton(
+                    key: const Key('fab'),
                     onPressed: () {
                       dismissKeyboard(context);
                       model.onSearch();
@@ -38,7 +39,7 @@ class HomeView extends StatelessWidget {
                   ),
             appBar: AppBar(
               elevation: 0,
-              key: Key('app-bar'),
+              key: const Key('app-bar'),
               title: const Text('Weather App'),
               actions: [
                 FlatButton(
@@ -47,8 +48,10 @@ class HomeView extends StatelessWidget {
                       MaterialPageRoute(builder: (_) => HelpView()),
                     );
                   },
-                  child:
-                      const Text('Help', style: TextStyle(color: Colors.white)),
+                  child: const Text(
+                    'Help',
+                    style: const TextStyle(color: Colors.white),
+                  ),
                 )
               ],
             ),
@@ -59,7 +62,7 @@ class HomeView extends StatelessWidget {
                   child: TextFormField(
                     readOnly: isBusy,
                     initialValue: model.city,
-                    key: Key('text-form-field'),
+                    key: const Key('text-form-field'),
                     style: theme.textTheme.headline4,
                     onChanged: model.onSearchChanged,
                     textCapitalization: TextCapitalization.words,

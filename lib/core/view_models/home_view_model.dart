@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
 import 'package:weatherapp/locator.dart';
+import 'package:weatherapp/core/utils/config.dart';
 import 'package:weatherapp/core/model/weather_data.dart';
 import 'package:weatherapp/core/services/hive_service.dart';
 import 'package:weatherapp/core/view_models/base_model.dart';
@@ -52,11 +53,7 @@ class HomeViewModel extends BaseModel {
   Future _fetchWeatherData(Map<String, dynamic> queryParams,
       {bool isGeoLocation = false}) async {
     setBusy();
-    final queryParameters = {
-      ...queryParams,
-      "units": "metric",
-      "APPID": "a44c63bf4a70d8d8dd6758497afce4ec",
-    };
+    final queryParameters = {...queryParams, "units": "metric", "APPID": appId};
     try {
       WeatherData result;
       if (isGeoLocation) {
