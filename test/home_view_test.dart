@@ -7,21 +7,26 @@ import 'package:weatherapp/core/view_models/home_view_model.dart';
 
 void main() {
   setupLocator();
-  group("HomeView model test.", () {
-    test("A value should be set for property 'city'.", () async {
+  group("HomeView Test.", () {
+    test("A value is set for property 'city'.", () async {
       final homeModel = locator<HomeViewModel>();
       const city = "Kathmandu";
       homeModel.onSearchChanged(city);
       expect(homeModel.city, city);
     });
-  });
-  testWidgets("HomeView widget test.", (WidgetTester tester) async {
-    await tester.pumpWidget(MaterialApp(home: HomeView()));
 
-    final appbarWidget = find.byKey(Key('app-bar'));
-    expect(appbarWidget, findsOneWidget);
+    testWidgets("Widget should be found in the tree.",
+        (WidgetTester tester) async {
+      await tester.pumpWidget(MaterialApp(home: HomeView()));
 
-    final cityTextFieldWidget = find.byKey(Key("text-form-field"));
-    expect(cityTextFieldWidget, findsOneWidget);
+      final appbarWidget = find.byKey(Key('app-bar'));
+      expect(appbarWidget, findsOneWidget);
+
+      final cityTextFieldWidget = find.byKey(Key("text-form-field"));
+      expect(cityTextFieldWidget, findsOneWidget);
+
+      final fabWidget = find.byKey(Key("fab"));
+      expect(fabWidget, findsOneWidget);
+    });
   });
 }
